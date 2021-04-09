@@ -1,0 +1,51 @@
+server:
+  shutdown: graceful
+
+spring:
+  profiles:
+    active: ${front.api.profile:beta}
+  main:
+    allow-bean-definition-overriding: true
+
+
+r2dbc:
+  pool:
+    max-idle-time: ${front.api.datasource.max.idle.time:2}
+    max-create-connection-time: ${front.api.datasource.max.create.connection.time:30}
+    max-life: ${front.api.datasource.max.life:60}
+    initial-size: ${front.api.datasource.initial.size:20}
+    max-size: ${front.api.datasource.max.size:30}
+  korea:
+    host: ${front.api.datasource.korea.host:localhost}
+    port: ${front.api.datasource.korea.port:3306}
+    db: ${front.api.datasource.korea.db:test}
+    username: ${front.api.datasource.korea.username:test}
+    password: ${front.api.datasource.korea.password:test1234##}
+  europe:
+    host: ${front.api.datasource.europe.host:localhost}
+    port: ${front.api.datasource.europe.port:3306}
+    db: ${front.api.datasource.europe.db:test}
+    username: ${front.api.datasource.europe.username:test}
+    password: ${front.api.datasource.europe.password:test1234##}
+
+
+coroutine:
+  io:
+    pool:
+      thread-name-prefix: ${front.api.coroutine.io.pool.nameprefix:gwp-io}
+
+logging:
+  level:
+    root: ${front.api.logging.level.root:info}
+    org:
+      springframework:
+        data:
+          r2dbc: ${front.api.logging.level.r2dbc:debug}
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics, prometheus
+
