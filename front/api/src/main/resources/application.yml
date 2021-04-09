@@ -49,3 +49,8 @@ management:
       exposure:
         include: metrics, prometheus
 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui-custom.html
+  packages-to-scan:
+    - com.kidaristudio.gwp.backend.front.api

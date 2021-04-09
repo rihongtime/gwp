@@ -17,9 +17,9 @@ class ContentController(
     val contentsService: ContentsService
 ) {
 
-    @GetMapping("/{contentId}")
+    @GetMapping("/{contentsId}")
     suspend fun get(
-        @PathVariable contentId: Long
+        @PathVariable contentsId: Long
     ): ContentsResponse? =
-        contentsService.get(contentId)?.toResponse()
+        contentsService.get(contentsId)?.toResponse()
 }

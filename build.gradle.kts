@@ -5,7 +5,7 @@ import com.linecorp.support.project.multi.recipe.matcher.ProjectMatchers.Compani
 import com.linecorp.support.project.multi.recipe.matcher.ProjectMatchers.Companion.byTypeSuffix
 import com.linecorp.support.project.multi.recipe.matcher.ProjectMatchers.Companion.byTypeHaving
 import com.linecorp.support.project.multi.recipe.matcher.ProjectMatchers.Companion.byTypePrefix
-
+import com.linecorp.support.project.multi.recipe.matcher.or
 import com.linecorp.support.project.multi.recipe.matcher.and
 import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -116,17 +116,20 @@ configure(
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-webflux")
         implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
-        implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
         implementation("org.springframework.boot:spring-boot-starter-actuator")
+//        implementation("org.springframework.boot:spring-boot-starter-hateoas")
 
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("joda-time:joda-time:2.9.7")
+
+
+        implementation("org.springdoc:springdoc-openapi-webflux-ui:1.5.6")
+        implementation("org.springdoc:springdoc-openapi-kotlin:1.5.6")
 
         runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 
     }
 }
-
 
 configure(
     byTypeSuffix("lib") and byLabel("persistence")
