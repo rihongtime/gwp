@@ -73,6 +73,7 @@ configureByTypePrefix("kotlin") {
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
         implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 
+        runtimeOnly("org.springframework.boot:spring-boot-devtools")
     }
 }
 
@@ -85,6 +86,7 @@ configure(
         "kapt"("org.springframework.boot:spring-boot-configuration-processor:2.2.4.RELEASE")
         implementation(project(":persistence:common"))
         implementation(project(":persistence:contents"))
+
     }
 }
 
@@ -122,12 +124,19 @@ configure(
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("joda-time:joda-time:2.9.7")
 
-
-        implementation("org.springdoc:springdoc-openapi-webflux-ui:1.5.6")
-        implementation("org.springdoc:springdoc-openapi-kotlin:1.5.6")
-
         runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 
+    }
+}
+
+configure(
+    byTypeSuffix("boot-application") or byLabel(
+        "swagger"
+    )
+) {
+    dependencies {
+        implementation("org.springdoc:springdoc-openapi-webflux-ui:1.5.6")
+        implementation("org.springdoc:springdoc-openapi-kotlin:1.5.6")
     }
 }
 

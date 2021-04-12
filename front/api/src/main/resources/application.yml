@@ -6,7 +6,9 @@ spring:
     active: ${front.api.profile:beta}
   main:
     allow-bean-definition-overriding: true
-
+  devtools:
+    restart:
+      enabled: true
 
 r2dbc:
   pool:
@@ -54,3 +56,4 @@ springdoc:
     path: /swagger-ui-custom.html
   packages-to-scan:
     - com.kidaristudio.gwp.backend.front.api
+
